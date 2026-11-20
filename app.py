@@ -1,12 +1,19 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def welcome():
-    return "Welcome to Wholly Roasters!"
+    return render_template("home.html", name=" Parker")
 
 
 @app.route("/about", methods=["GET"])
 def about():
-    return "This is the 'About Us' page."
+    return render_template("about.html")
+
+
+@app.route("/shop", methods=["GET"])
+def shop():
+    cart = ["12oz Medium Roast", "24oz French Roast",
+            "96oz Whole Beans"]
+    return render_template("shop.html", cart=cart)
